@@ -1,0 +1,33 @@
+import wikipedia
+import wolframalpha
+from tkinter import *
+root=Tk()
+root.title("MY GOOGLE")
+text=Label(root,text="HEllo I am Gideon Is there anything I help you With ?")
+text.configure(background="orange")
+text.pack()
+label_1=Label(root,text="QUESTION ?")
+entry_1=Entry(root,width=100)
+entry_1.focus()
+label_1.pack()
+label_1.configure(background="lightgreen")
+entry_1.pack()
+
+root.configure(background="white")
+root.minsize(640,100)
+def search():
+    inp = entry_1.get()
+    try:
+        APPID = "AGVT22-AE67Q6APHU"
+        client = wolframalpha.Client(APPID)
+        res = client.query(inp)
+        answer = next(res.results).text
+        print(answer)
+    except:
+        print (wikipedia.summary(inp+"\n"))
+button_1=Button(root,text="SEARCH",command=search)
+button_1.pack()
+button_1.configure(background="orange",width=35)
+
+
+root.mainloop()
